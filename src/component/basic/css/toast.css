@@ -1,0 +1,141 @@
+
+.custom-toast{
+    width: 531px;
+    border-radius: 10px;
+    padding: 20px;
+    position: relative; 
+    margin-left: 10px; 
+    }
+    .custom-toast-success{
+        border: 1px solid #40CD8A;
+        box-shadow: 0 4px 4px 0 rgba(64, 205, 138, 0.25); 
+
+   }
+   .custom-toast-error{
+    border: 1px solid #DB4446;
+    box-shadow: 0 4px 4px 0 rgba(219, 68, 70, 0.25); 
+
+}
+    .Toastify__toast-body {
+        gap: 10px;
+    }
+    .Toastify__toast-body div {
+  
+    text-align:left !important;
+    font-size: 16px;
+    color: #000000;
+    line-height: 19.36px;
+    font-weight: 600;
+}
+
+
+  .icon-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+    height: 30px;
+    border-radius: 9px;
+    }
+    
+    .icon-wrapper-check{
+    background: #40CD8A;
+
+    }
+    .icon-wrapper-error{
+        background: #DB4446;
+    }
+.image-check{
+    border-radius: 9px;
+    height: 20px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+/* gap: 10px; */
+  
+}
+.image-error{
+    background: #DB4446;
+    border-radius: 9px;
+    height: 20px;
+    width: 30px;
+}
+.Toastify__close-button {
+    
+    background-image: url('../../assert/ic_round-close.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 24px; 
+    height: 24px;
+    position: absolute;
+    top: 50%; 
+    transform: translateY(-50%);
+    right: 10px; 
+   
+   
+}
+.Toastify__close-button--light {
+    color: #000;
+    opacity: 1;
+}
+  
+  /* .Toastify__close-button:hover {
+    background-image: url('../../assert/ic_round-close.png');
+    width: 24px; 
+    height: 24px; 
+  } */
+  .Toastify__close-button svg {
+    display: none; 
+  }
+  .Toastify__close-button--light {
+    color: #000;
+    opacity: 1; 
+}
+
+
+.Toastify__close-button svg {
+    display: none; 
+}
+
+.Toastify__progress-bar-theme--light {
+    opacity: 0;
+}
+/* 
+.Toastify__progress-bar--success {
+    display: none;
+
+}
+.Toastify__progress-bar--error {
+    display: none;
+} */
+
+/* animation to show */
+@keyframes slideInUp {
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideOutDown {
+    from {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+  }
+  
+  .slideInUp {
+    animation: slideInUp 0.2s forwards;
+  }
+  
+  .slideOutDown {
+    animation: slideOutDown 0.2s forwards;
+  }

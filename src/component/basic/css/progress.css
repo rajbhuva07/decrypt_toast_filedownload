@@ -1,0 +1,30 @@
+/* Progress.css */
+.progress-bar-wrapper {
+    width: 220px;
+    height: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 0 auto;
+}
+
+.partial-border {
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);
+    border: 5px solid #ff7f00;
+}
+
+.progress-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+    position: relative;
+    border-radius: 50%;
+    background-color: transparent;
+}

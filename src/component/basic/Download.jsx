@@ -36,7 +36,7 @@ const DownloadButton = ({ fileUrl }) => {
     );
   };
   const Download = () => {
-    const fileUrl = "https://stagecdn.waosim.com/landingpage/assets/icons/downloadIcon.svg";
+    const fileUrl = "https://stagecdn.waosim.com/backend/pdf/payment-receipt-pi_3PbJkIA5ytHoKarb1pcCir6G.pdf";
   
     return (
       <div>

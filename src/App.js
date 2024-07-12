@@ -6,8 +6,8 @@ import Download from './component/basic/Download';
 const App = () => {
  
   return (
-  //  <Decryment/>
-   <Download/>
+   <Decryment/>
+  //  <Download/>
   );
 };
 

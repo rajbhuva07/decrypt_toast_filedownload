@@ -1,22 +1,32 @@
 import React, { useState } from 'react';
 import {  decryptText } from './cryptoUtils';
-
+import CryptoJS from 'crypto-js';
+const secretKey = CryptoJS.enc.Utf8.parse('veHDKfJPRVWEPUH2EflEbt8Q4jZl49t8');
 const Decryment = () => {
   const [inputText, setInputText] = useState('');
   const [decryptedText, setDecryptedText] = useState('');
   const [decryptionError, setDecryptionError] = useState('');
 
+
   const handleDecrypt = () => {
-    const decrypted = decryptText(inputText.trim());
-    if (typeof decrypted === 'string' && decrypted.startsWith('Error decrypting')) {
-      setDecryptionError(decrypted);
+    try {
+      if (!inputText.trim()) {
+        throw new Error('Please enter encrypted text to decrypt.');
+      }
+
+      const decrypted = decryptText(inputText.trim());
+      if (typeof decrypted === 'string' && decrypted.startsWith('Error decrypting')) {
+        setDecryptionError(decrypted);
+        setDecryptedText('');
+      } else {
+        setDecryptedText(decrypted);
+        setDecryptionError('');
+      }
+    } catch (error) {
+      setDecryptionError(`Error decrypting: ${error.message}`);
       setDecryptedText('');
-    } else {
-      setDecryptedText(decrypted);
-      setDecryptionError('');
     }
   };
-
   return (
     <div>
       <h1>AES Decryption</h1>
@@ -46,5 +56,4 @@ const Decryment = () => {
     </div>
   );
 };
-
 export default Decryment;

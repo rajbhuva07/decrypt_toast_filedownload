@@ -28,25 +28,26 @@
 //       return `Error decrypting: ${error.message}`;
 //     }
 //   };
-import CryptoJS from 'crypto-js';
 
 // const secretKey = CryptoJS.enc.Utf8.parse('veHDKfJPRVWEPUH2EflEbt8Q4jZl49t8');
 // // const iv = 'veHDKFJRVWEPWU9E';
 
 
 // export const encryptText = (text) => {
-//   try {
-//     const encrypted = CryptoJS.AES.encrypt(
-//       text,
-//       CryptoJS.enc.Utf8.parse(secretKey),
-//       { mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 }
-//     ).toString();
-//     return encrypted;
-//   } catch (error) {
+  //   try {
+    //     const encrypted = CryptoJS.AES.encrypt(
+      //       text,
+      //       CryptoJS.enc.Utf8.parse(secretKey),
+      //       { mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 }
+      //     ).toString();
+      //     return encrypted;
+      //   } catch (error) {
+        
 //     return `Error encrypting: ${error.message}`;
 //   }
 // };
 
+import CryptoJS from 'crypto-js';
 
 const secretKey = CryptoJS.enc.Utf8.parse('veHDKfJPRVWEPUH2EflEbt8Q4jZl49t8');
 

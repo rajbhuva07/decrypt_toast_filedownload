@@ -1,49 +1,64 @@
-import React from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import { saveAs } from 'file-saver';
+const normalizeFileUrl = (url, baseUrl) => {
+ if (url.startsWith(baseUrl)) {
+    return url.substring(baseUrl.length);
+  }
+ return '';
+};
+
 const DownloadButton = ({ fileUrl }) => {
-    // const handleDownload = async () => {
-    //     try {
-    //       // Fetch the file using Axios
-    //       const response = await axios.get(`https://api.allorigins.win/raw?url=${encodeURIComponent(fileUrl)}`, {
-    //         responseType: 'blob', 
-    //       });
-    //   saveAs(response.data, fileUrl.substring(fileUrl.lastIndexOf('/') + 1));
-    
-    //     } catch (error) {
-    //       console.error('Error downloading file:', error);
-    //     }
-    //   };
-    const handleDownload = () => {
-        const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(fileUrl)}`;
-      
-        fetch(proxyUrl)
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.blob();
-          })
-          .then((blob) => {
-            saveAs(blob, fileUrl.substring(fileUrl.lastIndexOf('/') + 1));
-          })
-          .catch((error) => {
-            console.error('Error downloading file:', error);
-          });
-      };
-    return (
-      <button onClick={handleDownload}>Download</button>
-    );
-  };
-  const Download = () => {
-    const fileUrl = "https://stagecdn.waosim.com/backend/pdf/payment-receipt-pi_3PbJkIA5ytHoKarb1pcCir6G.pdf";
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const baseUrl = "https://stagecdn.waosim.com"; 
+
+  const handleDownload = async () => {
+    setLoading(true);
+    setError('');
+
+    const normalizedUrl = normalizeFileUrl(fileUrl, baseUrl);
+    if (!normalizedUrl) {
+      setError('Invalid URL. Please check the URL and try again.');
+      setLoading(false);
+      return;
+    }
+
+    try {
+      // Fetch the file from the normalized URL
+      const response = await fetch(normalizedUrl);
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
   
-    return (
-      <div>
-        <h1>Download Example</h1>
-        <DownloadButton fileUrl={fileUrl} />
-      </div>
-    );
+      const blob = await response.blob();
+      saveAs(blob, fileUrl.substring(fileUrl.lastIndexOf('/') + 1));
+    } catch (error) {
+      setError('Error downloading file. Please try again.');
+      console.error('Download error:', error);
+    } finally {
+      setLoading(false);
+    }
   };
-  
-  export default Download;
+
+  return (
+    <div>
+      <button onClick={handleDownload} disabled={loading}>
+        {loading ? 'Downloading...' : 'Download'}
+      </button>
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+    </div>
+  );
+};
+
+const Download = () => {
+  const fileUrl = "https://stagecdn.waosim.com/backend/inquiries/6698d4fc7fe3b_media_20240206_101553_1206463892251576596 (1).jpg"; // Replace with your file URL
+
+  return (
+    <div>
+      <h1>Download Example</h1>
+      <DownloadButton fileUrl={fileUrl} />
+    </div>
+  );
+};
+
+export default Download;
